@@ -1,0 +1,157 @@
+@use "sass:map";
+@import "theme";
+@import "responsive";
+
+html,
+body {
+  margin: 0;
+}
+
+* {
+  font-family: Arial, Helvetica, sans-serif;
+  padding: 0;
+  margin: 0;
+  ul {
+    list-style: none;
+  }
+
+  a {
+    text-decoration: none;
+  }
+}
+
+.container {
+  max-width: 1170px;
+  width: 100%;
+  padding-left: 15px;
+  padding-right: 15px;
+  margin: auto;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.col-6 {
+  flex: 0 0 50%;
+  min-width: 50%;
+}
+
+@include Responsive($DESKTOP) {
+  .col-xl-3 {
+    flex: 0 0 25%;
+    min-width: 25%;
+  }
+  .col-xl-6 {
+    flex: 0 0 50%;
+    min-width: 50%;
+  }
+}
+
+@include Responsive($MEDIUM_DEVICE) {
+  .col-lg-3 {
+    flex: 0 0 25%;
+    min-width: 25%;
+  }
+}
+
+.header__logo {
+  padding: 15px 0;
+}
+
+.header__menu {
+  padding: 24px 0;
+
+  ul {
+    display: flex;
+    justify-content: space-between;
+
+    li {
+      position: relative;
+    }
+
+    li > a {
+      font-size: 14px;
+      color: map.get($theme-colors, "bold-text");
+      text-transform: uppercase;
+      font-weight: bold;
+      letter-spacing: 2px;
+      transition: all 0.3s;
+      padding: 5px 0;
+      display: block;
+    }
+    .active a {
+      color: map.get($theme-colors, "main");
+    }
+
+    li:hover .header__menu__dropdown {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .header__menu__dropdown {
+      background-color: #222222;
+      display: block;
+      position: absolute;
+      width: 180px;
+      z-index: 99;
+      padding: 5px 0;
+      transform: all 0.3s;
+      opacity: 0;
+      visibility: hidden;
+      border-radius: 5px;
+
+      li {
+        a {
+          text-transform: capitalize;
+          color: #ffffff;
+          font-weight: 400;
+          padding: 5px 15px;
+        }
+
+        :hover {
+          color: map.get($theme-colors, "main");
+        }
+      }
+    }
+  }
+}
+
+.header__cart {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 24px 0;
+
+  ul {
+    display: flex;
+    margin-right: 25px;
+
+    li {
+      position: relative;
+      margin-left: 20px;
+
+      svg {
+        font-size: 25px;
+        color: map.get($theme-colors, "normal-text");
+      }
+
+      span {
+        color: white;
+        background-color: map.get($theme-colors, "main");
+        position: absolute;
+        height: 20px;
+        width: 20px;
+        border-radius: 50%;
+        display: inline-block;
+        text-align: center;
+        line-height: 20px;
+        font-size: 13px;
+        font-weight: 500;
+        left: 15px;
+        top: -5px;
+      }
+    }
+  }
+}

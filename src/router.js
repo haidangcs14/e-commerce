@@ -1,6 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import HomePage from "./pages/users/HomePage/HomePage";
 import { ROUTERS } from "./utils/router";
+import MasterLayout from "./pages/users/themes/MasterLayout/MasterLayout";
 
 const renderUserRouter = () => {
   const userRouters = [
@@ -11,11 +12,13 @@ const renderUserRouter = () => {
   ];
 
   return (
-    <Routes>
-      {userRouters.map((router, index) => {
-        <Route key={index} path={router.path} element={router.component} />;
-      })}
-    </Routes>
+    <MasterLayout>
+      <Routes>
+        {userRouters.map((item, key) => (
+          <Route key={key} path={item.path} element={item.component} />
+        ))}
+      </Routes>
+    </MasterLayout>
   );
 };
 
